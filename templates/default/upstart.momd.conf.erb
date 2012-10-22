@@ -1,0 +1,2 @@
+
+exec momd -c /etc/mom/mom.conf<% @rules.each do |rule| -%> -r /etc/mom/<%= rule %>.rules<% end -%>
