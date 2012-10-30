@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: mom
+# Cookbook Name:: ovirt-mom
 # Recipe:: install_guest
 # Author:: Guilhem Lettron <guilhem.lettron@youscribe.com>
 #
@@ -18,7 +18,7 @@
 # limitations under the License.
 #
 
-include_recipe "mom::install"
+include_recipe "ovirt-mom::install"
 
 template "upstart mom-guestd" do
   path "/etc/init/mom-guestd.conf"

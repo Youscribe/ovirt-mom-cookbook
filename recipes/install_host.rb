@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: mom
+# Cookbook Name:: ovirt-mom
 # Recipe:: install_host
 # Author:: Guilhem Lettron <guilhem.lettron@youscribe.com>
 #
@@ -18,9 +18,9 @@
 # limitations under the License.
 #
 
-include_recipe "mom::install"
+include_recipe "ovirt-mom::install"
 
-configuration_file = ::File.join( "/usr/share/doc/mom/examples/", "mom-#{node['mom']['rules'].join("+")}.conf" )
+configuration_file = ::File.join( "/usr/share/doc/mom/examples/", "mom-#{node['ovirt']['mom']['rules'].join("+")}.conf" )
 
 directory "/etc/mom" do
   owner "root"
@@ -41,7 +41,7 @@ file "momd configuration" do
   notifies :restart, "service[momd]"
 end
 
-node['mom']['rules'].each do |rule|
+node['ovirt']['mom']['rules'].each do |rule|
   file rule do
     path "/etc/mom/#{rule}.rules"
     content IO.read("/usr/share/doc/mom/examples/#{rule}.rules")
@@ -61,7 +61,7 @@ template "upstart momd" do
   group "root"
   mode "0644"
   variables(
-    :rule => node['mom']['rules']
+    :rule => node['ovirt']['mom']['rules']
   )
   notifies :restart, "service[momd]"
 end

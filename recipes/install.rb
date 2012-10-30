@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: mom
+# Cookbook Name:: ovirt-mom
 # Recipe:: install
 # Author:: Guilhem Lettron <guilhem.lettron@youscribe.com>
 #
@@ -20,11 +20,11 @@
 
 include_recipe "python"
 
-mom_path = ::File.join( node['chef_client']['cache_path'], "mom" )
+mom_path = ::File.join( Chef::Config[:file_cache_path], "mom" )
 
 git "mom sources" do
   destination mom_path
-  repository node['mom']['repository']
+  repository node['ovirt']['mom']['repository']
   reference "master"
   action :sync
   notifies :run, "bash[install mom]", :immediately

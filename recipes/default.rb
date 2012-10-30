@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: mom
+# Cookbook Name:: ovirt-mom
 # Recipe:: default
 # Author:: Guilhem Lettron <guilhem.lettron@youscribe.com>
 #
@@ -18,6 +18,6 @@
 # limitations under the License.
 #
 
-if node['mom']['role']
-  include_recipe "mom::install_#{node['mom']['role']}"
+if node['ovirt']['mom']['role']
+  include_recipe "ovirt-mom::install_#{node['ovirt']['mom']['role']}"
 end
